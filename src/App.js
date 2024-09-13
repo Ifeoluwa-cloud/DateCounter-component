@@ -13,6 +13,8 @@ export default function App() {
 function Counter() {
   const [count, setCount] = useState(0);
   const [step, setStep] = useState(1);
+  const date = new Date("June 21 2027");
+  date.setDate(date.getDate() + count);
 
   function prevHandler() {
     if (count >= 1) {
@@ -25,7 +27,7 @@ function Counter() {
   }
 
   function prevBtn() {
-    if (step > 0) {
+    if (step >= 0) {
       setStep((s) => s - 1);
     }
   }
@@ -37,16 +39,23 @@ function Counter() {
   return (
     <>
         <div className="Counter">
+          <div>Step: {step}</div>
+          <button onClick={prevBtn}>Prev</button>
+          <button onClick={nextBtn}>Next</button>
           <div>Count: {count}</div>
           <button onClick={prevHandler}>Prev</button>
           <button onClick={nextHandler}>Next</button>
         </div>
-
-        <div className="Steps">
-          <div>Step: {step}</div>
-          <button onClick={prevBtn}>Prev</button>
-          <button onClick={nextBtn}>Next</button>
-        </div>
+        <p>
+          <span>
+            {count === 0 
+            ? "Today is " 
+            : count > 0 
+            ? `${count} days from today is ` 
+            : `${Math.abs(count)} days ago was  `}
+          </span>
+          <span>{date.toDateString()}</span>
+        </p>
     </>
   );
 }
