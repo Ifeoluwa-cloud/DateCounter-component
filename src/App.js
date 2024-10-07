@@ -11,8 +11,8 @@ export default function App() {
 
 
 function Counter() {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(1);
+  const [step, setStep] = useState(0);
   const date = new Date("June 21 2027");
   date.setDate(date.getDate() + count);
 
@@ -39,7 +39,7 @@ function Counter() {
   return (
     <>
         <div className="Counter">
-          <input type='range' min={0} max={10}></input>
+          <input type='range' min="0" max="10" value={step} onchange={e=>setStep(e.target.value)}></input>
           <div>Step: {step}</div>
           <button onClick={prevBtn}>Prev</button>
           <button onClick={nextBtn}>Next</button>
